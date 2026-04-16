@@ -1,13 +1,47 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.Scanner; // Import necessário para ler dados
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+class Node {
+    int data;
+    Node next;
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        Node head = null;
+        Node tail = null;
+
+        System.out.print("Quantos itens deseja adicionar? ");
+        int quantidade = leitor.nextInt(); // Equivalente ao scanf("%d")
+
+        for (int i = 0; i < quantidade; i++) {
+            System.out.print("Digite o valor para o nó " + (i + 1) + ": ");
+            int valor = leitor.nextInt();
+
+            Node novoNo = new Node(valor);
+
+            if (head == null) {
+                head = novoNo; // Primeiro nó vira a cabeça
+                tail = head;
+            } else {
+                tail.next = novoNo; // O atual último aponta para o novo
+                tail = novoNo;      // O novo nó passa a ser o último
+            }
+        }
+
+        // Exibição da lista
+        System.out.println("\n--- Lista Encadeada Criada ---");
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+
+        leitor.close(); // Fecha o scanner
     }
 }
