@@ -41,7 +41,27 @@ class Main {
             temp = temp.next;
         }
         System.out.println("null");
+        System.out.print("Digite o valor que deseja buscar: ");
+        int alvo = leitor.nextInt();
 
+        buscar(head, alvo);
         leitor.close(); // Fecha o scanner
     }
+    public static boolean buscar(Node head, int valorProcurado) {
+        Node temp = head;
+        int posicao = 0;
+
+        while (temp != null) {
+            if (temp.data == valorProcurado) {
+                System.out.println("Valor " + valorProcurado + " encontrado na posicao: " + posicao);
+                return true; // Encontrou!
+            }
+            temp = temp.next;
+            posicao++;
+        }
+
+        System.out.println("Valor " + valorProcurado + " nao encontrado na lista.");
+        return false; // Percorreu tudo e não achou
+    }
+
 }
